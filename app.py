@@ -3,7 +3,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Load dataset
+
 jobs = pd.DataFrame({
     'job_title': ['Data Analyst', 'Software Engineer', 'Machine Learning Engineer', 'Web Developer', 'Cyber Security Analyst'],
     'skills': [
@@ -16,13 +16,13 @@ jobs = pd.DataFrame({
 })
 
 def recommend_jobs(user_input):
-    # Simple keyword matching
+    
     results = []
     for i, row in jobs.iterrows():
         count = sum(skill in row['skills'] for skill in user_input.lower().split())
         if count > 0:
             results.append((row['job_title'], count))
-    # Sort by count
+ 
     results.sort(key=lambda x: x[1], reverse=True)
     return results[:5]
 
